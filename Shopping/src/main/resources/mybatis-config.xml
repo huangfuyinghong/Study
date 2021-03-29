@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- DB 테이블과 컬럼들을 mapper 매핑을 위한 변수 선언 -->
+	<properties>
+	
+	<!-- * property - name : mapper.xml에서 사용될 이름; - value : DB 테이블 및 컬럼 이름 -->
+	
+	<!-- admin -->
+	<property name="admin" value="admin"/>
+	<property name="aNO" value="aNO"/>
+	<property name="aID" value="aID"/>
+	<property name="aPW" value="aPW"/>
+	<property name="aNAME" value="aNAME"/>
+	<property name="aLEVEL" value="aLEVEL"/>
+	<property name="aCDATE" value="aCDATE"/>
+	
+	<!-- buyer -->
+	<property name="buyer" value="buyer"/>
+	<property name="bNO" value="bNO"/>
+	<property name="bID" value="bID"/>
+	<property name="bPW" value="bPW"/>
+	<property name="bPHONE" value="bPHONE"/>
+	<property name="bEMAIL" value="bEMAIL"/>
+	<property name="bPOST" value="bPOST"/>
+	<property name="bADDRESS" value="bADDRESS"/>
+	<property name="bBIRTH" value="bBIRTH"/>
+	<property name="bLICENSE" value="bLICENSE"/>
+	<property name="bTEMRS" value="bTEMRS"/>
+	<property name="bCDATE" value="bCDATE"/>
+	<property name="bLEVEL" value="bLEVEL"/>
+	<property name="bBUY" value="bBUY"/>
+	<property name="bDROP" value="bDROP"/>
+	
+	<!-- seller -->
+	<property name="seller" value="seller"/>
+	<property name="sNO" value="sNO"/>
+	<property name="sID" value="sID"/>
+	<property name="sPW" value="sPW"/>
+	<property name="sPHONE" value="sPHONE"/>
+	<property name="sEMAIL" value="sEMAIL"/>
+	<property name="sADDRESS" value="sADDRESS"/>
+	<property name="sBUILD" value="sBUILD"/>
+	<property name="sBUILDNO" value="sBUILDNO"/>
+	<property name="sLICENCE" value="sLICENCE"/>
+	<property name="sBANK" value="sBANK"/>
+	<property name="sTEMRS" value="sTEMRS"/>
+	<property name="sCDATE" value="sCDATE"/>
+	<property name="sLEVEL" value="sLEVEL"/>
+	<property name="sDROP" value="sDROP"/>
+	<property name="sNAME" value="sNAME"/>
+	
+	<!-- product -->
+	<property name="product" value="product"/>
+	<property name="pID" value="pID"/>
+	<property name="sID" value="sID"/>
+	<property name="pNAME" value="pNAME"/>
+	<property name="pDISCOUNT" value="pDISCOUNT"/>
+	<property name="pSTOCK" value="pSTOCK"/>
+	<property name="pIMG1" value="pIMG1"/>
+	<property name="pIMG2" value="pIMG2"/>
+	<property name="pIMG3" value="pIMG3"/>
+	<property name="pDETAIL" value="pDETAIL"/>
+	<property name="pDELIVERY" value="pDELIVERY"/>
+	<property name="pCDATE" value="pCDATE"/>
+	<property name="pHIT" value="pHIT"/>
+	<property name="pSELL" value="pSELL"/>
+	<property name="cateCode" value="cateCode"/>
+	<property name="pPRICE" value="pPRICE"/>
+	
+	<!-- order_ -->
+	<property name="oorder" value="oorder"/>
+	<property name="oID" value="oID"/>
+	<property name="bID" value="bID"/>
+	<property name="oCDATE" value="oCDATE"/>
+	<property name="oNAME" value="oNAME"/>
+	<property name="oPHONE" value="oPHONE"/>
+	<property name="oPOST" value="oPOST"/>
+	<property name="oADDRESS" value="oADDRESS"/>
+	<property name="oAMOUNT" value="oAMOUNT"/>
+	<property name="oPAYMENT" value="oPAYMENT"/>
+	<property name="oINVOICE" value="oINVOICE"/>
+	<property name="oDELIVERY" value="oDELIVERY"/>
+	
+	<!-- order_detail -->
+	<property name="orderDetail" value="orderDetail"/>
+	<property name="odID" value="odID"/>
+	<property name="oID" value="oID"/>
+	<property name="pID" value="pID"/>
+	<property name="odQTY" value="odQTY"/>
+
+	
+	<!-- cart -->
+	<property name="cart" value="cart"/>
+	<property name="cID" value="cID"/>
+	<property name="bID" value="bID"/>
+	<property name="pID" value="pID"/>
+	<property name="cQTY" value="cQTY"/>
+	
+	<!-- wishlist -->
+	<property name="wishList" value="wishList"/>
+	<property name="wID" value="wID"/>
+	<property name="bID" value="bID"/>
+	<property name="pID" value="pID"/>
+	
+	<!-- bqna -->
+	<property name="bqna" value="bqna"/>
+	<property name="bqID" value="bqID"/>
+	<property name="bqCATE" value="bqCATE"/>
+	<property name="bqWRITER" value="bqWRITER"/>
+	<property name="bqPW" value="bqPW"/>
+	<property name="bqTITLE" value="bqTITLE"/>
+	<property name="bqCONTENT" value="bqCONTENT"/>
+	<property name="bqFILE" value="bqFILE"/>
+	<property name="bqCDATE" value="bqCDATE"/>
+	<property name="bqSECRET" value="bqSECRET"/>
+	<property name="replyCOUNT" value="replyCOUNT"/>
+	
+	<!-- sqna -->
+	<property name="sqna" value="sqna"/>
+	<property name="sqID" value="sqID"/>
+	<property name="sqCATE" value="sqCATE"/>
+	<property name="sqWRITER" value="sqWRITER"/>
+	<property name="sqPW" value="sqPW"/>
+	<property name="sqTITLE" value="sqTITLE"/>
+	<property name="sqCONTENT" value="sqCONTENT"/>
+	<property name="sqFILE" value="sqFILE"/>
+	<property name="sqCDATE" value="sqCDATE"/>
+	<property name="sqSECRET" value="sqSECRET"/>
+	<property name="replyCOUNT" value="replyCOUNT"/>
+	
+	<!-- pqna -->
+	<property name="pqna" value="pqna"/>
+	<property name="pqID" value="pqID"/>
+	<property name="pqCATE" value="pqCATE"/>
+	<property name="pqWRITER" value="pqWRITER"/>
+	<property name="pqPW" value="pqPW"/>
+	<property name="pqTITLE" value="pqTITLE"/>
+	<property name="pqCONTENT" value="pqCONTENT"/>
+	<property name="pqFILE" value="pqFILE"/>
+	<property name="pqCDATE" value="pqCDATE"/>
+	<property name="pqSECRET" value="pqSECRET"/>
+	<property name="pID" value="pID"/>
+	<property name="replyCOUNT" value="replyCOUNT"/>
+	
+	
+	<!-- review -->
+	<property name="review" value="review"/>
+	<property name="rID" value="rID"/>
+	<property name="oID" value="oID"/>
+	<property name="pID" value="pID"/>
+	<property name="rWRITER" value="rWRITER"/>
+	<property name="rTITLE" value="rTITLE"/>
+	<property name="rCONTENT" value="rCONTENT"/>
+	<property name="rIMG" value="rIMG"/>
+	<property name="rIMG2" value="rIMG2"/>
+	<property name="rCDATE" value="rCDATE"/>
+	<property name="rHIT" value="rHIT"/>
+	
+	<!-- reply -->
+	<property name="reply" value="reply"/>
+	<property name="replyID" value="replyID"/>
+	<property name="qnaID" value="qnaID"/>
+	<property name="replyCONTENT" value="replyCONTENT"/>
+	<property name="replyWRITER" value="replyWRITER"/>
+
+	<!-- product_category -->
+	<property name="category" value="category"/>
+	<property name="cateName" value="cateName"/>
+	<property name="cateCode" value="cateCode"/>
+	<property name="cateCodeRef" value="cateCodeRef"/>
+	
+	
+	</properties>
+	<!-- Underscore 명명법을 Camel 명명법으로 매핑 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<!-- typeAliases : mapper.xml의 select 리턴 타입에 들어갈 클래스 경로를 설정 -->
+	<typeAliases>
+		<package name="com.web.shopping.domain"/>  <!-- 해당 경로에 있는 vo 스캔 -->
+	</typeAliases>
+
+
+</configuration> 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.shopping.SqnaMapper">
+
+<!-- 컬럼이름 : mybatis-config.xml의 name
+	${컬럼이름} : DB 테이블의 열
+	#{컬럼이름} : 입력받은 데이터 -->
+	
+	<!-- DB 쿼리 작성 -->
+	<!-- id : dao의 메소드와 연결하기 위해 사용 -->
+	
+	<!-- resultType : select를 했을때 리턴하는 레코드 타입 선언
+	- 일반적으로 패키지 이름을 포함한 전체경로의 클래스 이름을 사용해야함
+	- mybatis-config.xml에서 typeAliases 속성을 package로 정의하여 클래스 이름만 사용 -->
+	
+	
+	<select id="select_all" resultType="SqnaVO">
+		select * from ${sqna}
+		order by ${sqID} desc
+	</select>
+	
+	<select id="select_by_sqID" resultType="SqnaVO">
+		select * from ${sqna}
+		where ${sqID} = #{sqID}
+	</select>
+	
+	<select id="select_by_mysqWRITER" resultType="SqnaVO">
+		select * from ${sqna}
+		where ${sqWRITER} = #{sqWRITER}
+	</select>
+	
+	
+	<insert id="insert">
+		insert into ${sqna} (${sqCATE}, ${sqWRITER}, ${sqTITLE}, ${sqCONTENT}, ${sqFILE})
+		values (#{sqCATE}, #{sqWRITER}, #{sqTITLE}, #{sqCONTENT}, #{sqFILE})
+	</insert>
+	
+	<update id="update">
+		update ${sqna}
+		set ${sqTITLE} = #{sqTITLE}, ${sqCONTENT} = #{sqCONTENT}, ${sqFILE} = #{sqFILE}
+		where ${sqID} = #{sqID}
+	</update>
+	
+	<delete id="delete">
+		delete from ${sqna} 
+		where ${sqID} = #{sqID}
+	</delete>
+	
+	<select id="total_count" resultType="Integer">
+		select count(*) total_cnt from ${sqna}
+	</select>
+	
+	<select id="paging" resultType="SqnaVO">
+		select
+		b.${sqID}, b.${sqCATE}, b.${sqWRITER}, b.${sqTITLE}, b.${sqCONTENT}, b.${sqFILE}, b.${sqCDATE}
+		from (
+			select rownum rn, a.* 
+			from (
+				select * from ${sqna} order by ${sqID} desc
+				)a
+			)b
+			where rn between #{start} and #{end}
+	</select>
+	
+	<select id="select_by_sqWRITER" resultType="SqnaVO">
+		select * from ${sqna}
+		where ${sqWRITER} like #{sqWRITER}
+	</select>
+	
+	<select id="select_by_sqTITLE_sqCONTENT" resultType="SqnaVO">
+		select * from ${sqna} 
+		where ${sqTITLE} like #{keyword} or ${sqCONTENT} like #{keyword}
+		order by ${sqID} desc
+	</select>
+	
+	<update id="update_replyCOUNT">
+		update ${sqna}
+		set ${replyCOUNT} = ${replyCOUNT} + #{amount}
+		where ${sqID} = #{sqID}
+	</update>
+
+</mapper>

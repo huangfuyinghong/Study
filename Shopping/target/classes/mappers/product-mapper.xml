@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 주로 dao 클래스와 연결하기 위한 키로 사용 -->
+<mapper namespace="com.web.shopping.ProductMapper">
+
+		<!-- 컬럼이름 : mybatis-config.xml의 name ${컬럼이름} : DB 테이블의 열 #{컬럼이름} : 입력받은 
+				데이터 -->
+
+		<!-- DB 쿼리 작성 -->
+		<!-- id : dao의 메소드와 연결하기 위해 사용 -->
+		<insert id="insert">
+				insert into ${product} (${sID}, ${pNAME}, ${pDISCOUNT}, ${pSTOCK}, ${pIMG1},
+				${pIMG2}, ${pIMG3}, ${pDETAIL}, ${cateCode}, ${pPRICE})
+				values (#{sID}, #{pNAME}, #{pDISCOUNT}, #{pSTOCK}, #{pIMG1}, #{pIMG2},
+				#{pIMG3}, #{pDETAIL}, #{cateCode}, #{pPRICE})
+		</insert>
+
+		<select id="select_all" resultType="ProductVO">
+				select * from ${product}
+				order by ${pID} desc
+		</select>
+
+		<select id="select_by_pID" resultType="ProductVO">
+				select * from ${product}
+				where ${pID} = #{pID}
+		</select>
+
+		<update id="update">
+				update ${product}
+				set ${pNAME} = #{pNAME}, ${pDISCOUNT} = #{pDISCOUNT}, ${pSTOCK} =
+				#{pSTOCK}, ${pIMG1} = #{pIMG1}, ${pIMG2} = #{pIMG2}, ${pIMG3} =
+				#{pIMG3}, ${pDETAIL} = #{pDETAIL}, ${pDELIVERY} = #{pDELIVERY}, ${pPRICE} = #{pPRICE}
+				where ${pID} = #{pID}
+		</update>
+
+		<delete id="delete">
+				delete from ${product}
+				where ${pID} = #{pID}
+		</delete>
+
+		<select id="total_count" resultType="Integer">
+				select count(*) total_cnt from ${product}
+		</select>
+
+		<select id="paging" resultType="ProductVO">
+				select
+				b.${pID}, b.${sID}, b.${pNAME}, b.${pPRICE}, b.${pDISCOUNT}, b.${pSTOCK}, b.${pDELIVERY},
+				b.${pCDATE}, b.${pHIT}, b.${pSELL}, b.${cateCode}, b.${pIMG1}
+				from (
+				select rownum rn, a.*
+				from (
+				select * from ${product} order by ${pID} desc
+				)a
+				)b
+				where rn between #{start} and #{end}
+		</select>
+
+		<select id="select_by_kw" resultType="SellerVO">
+				select * from ${product}
+				where ${pID} like #{keyword}
+				order by ${pID} desc
+		</select>
+
+		<select id="category" resultType="CategoryVO">
+				select
+				level, cateName, cateCode, cateCodeRef
+				from category
+				start with cateCodeRef is null connect by prior cateCode = cateCodeRef
+		</select>
+		
+		<select id="select_by_myProductsID" resultType="ProductVO">
+			select * from ${product}
+			where ${sID} like #{sID}
+		</select>
+		
+		<insert id="insert_cart">
+		insert into ${cart} (${bID}, ${pID}, ${cQTY})
+		values (#{bID}, #{pID}, #{cQTY})
+	</insert>
+		
+
+
+
+</mapper>

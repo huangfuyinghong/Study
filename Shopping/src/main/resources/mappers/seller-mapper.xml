@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 주로 dao 클래스와 연결하기 위한 키로 사용 -->
+<mapper namespace="com.web.shopping.SellerMapper">
+
+<!-- 컬럼이름 : mybatis-config.xml의 name
+	${컬럼이름} : DB 테이블의 열
+	#{컬럼이름} : 입력받은 데이터 -->
+	
+	<!-- DB 쿼리 작성 -->
+	<!-- id : dao의 메소드와 연결하기 위해 사용 -->
+	<insert id="insert">
+		insert into ${seller} (${sID}, ${sPW}, ${sPHONE}, ${sEMAIL}, ${sADDRESS}, ${sBUILD}, ${sBUILDNO}, ${sLICENCE}, ${sBANK}, ${sTEMRS}, ${sNAME})
+		values (#{sID}, #{sPW}, #{sPHONE}, #{sEMAIL}, #{sADDRESS}, #{sBUILD}, #{sBUILDNO}, #{sLICENCE}, #{sBANK}, #{sTEMRS}, #{sNAME})
+	</insert>
+
+	<select id="select_all" resultType="SellerVO">
+		select * from ${seller}
+		order by ${sID} desc
+	</select>
+	
+	<select id="select_by_sID" resultType="SellerVO">
+		select * from ${seller}
+		where ${sID} = #{sID}
+	</select>
+	
+	<update id="update">
+		update ${seller}
+		set ${sPHONE} = #{sPHONE}, ${sEMAIL} = #{sEMAIL}, ${sADDRESS} = #{sADDRESS}, ${sBUILD} = #{sBUILD}, ${sBUILDNO} = #{sBUILDNO}, ${sLICENCE} = #{sLICENCE}, ${sBANK} = #{sBANK}, ${sLEVEL} = #{sLEVEL}, ${sDROP} = #{sDROP}, ${sNAME} = #{sNAME}
+		where ${sID} = #{sID}
+	</update>
+	
+	<delete id="delete">
+		delete from ${seller}
+		where ${sID} = #{sID}
+	</delete>
+	
+	<select id="select_login" resultType="SellerVO">
+		select * from ${seller}
+		where ${sID} = #{sID}
+	</select>
+	
+	<select id="total_count" resultType="Integer">
+		select count(*) total_cnt from ${seller}
+	</select>
+	
+	<select id="paging" resultType="SellerVO">
+		select
+		b.${sNO}, b.${sID}, b.${sPW}, b.${sPHONE}, b.${sEMAIL}, b.${sADDRESS}, b.${sBUILD}, b.${sBUILDNO}, b.${sLICENCE}, b.${sBANK}, b.${sTEMRS}, b.${sLEVEL}, b.${sDROP}, b.${sNAME}, b.${sCDATE}
+		from (
+			select rownum rn, a.* 
+			from (
+				select * from ${seller} order by ${sID} desc
+				)a
+			)b
+			where rn between #{start} and #{end}
+	</select>
+	
+	<select id="select_by_sNO" resultType="SellerVO">
+		select * from ${seller}
+		where ${sNO} like #{sNO}
+	</select>
+	
+	<select id="select_by_kw" resultType="SellerVO">
+		select * from ${seller}
+		where ${sID} like #{keyword}
+		order by ${sID} desc
+	</select>
+	
+	
+	<!-- 아이디 중복 확인  -->
+	<select id="sidCheck" resultType="int">
+		select count(*) from seller
+			where sID = #{sID}
+	</select>
+	
+	<!-- 상호명 중복 확인  -->
+	<select id="snameCheck" resultType="int">
+		select count(*) from seller
+			where sNAME = #{sNAME}
+	</select>
+		
+</mapper>	

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 주로 dao 클래스와 연결하기 위한 키로 사용 -->
+<mapper namespace="com.web.shopping.BuyerMapper">
+
+<!-- 컬럼이름 : mybatis-config.xml의 name
+	${컬럼이름} : DB 테이블의 열
+	#{컬럼이름} : 입력받은 데이터 -->
+	
+	<!-- DB 쿼리 작성 -->
+	<!-- id : dao의 메소드와 연결하기 위해 사용 -->
+	<insert id="insert">
+		insert into ${buyer} (${bID}, ${bPW}, ${bPHONE}, ${bEMAIL}, ${bPOST}, ${bADDRESS}, ${bBIRTH}, ${bLICENSE}, ${bTEMRS})
+		values (#{bID}, #{bPW}, #{bPHONE}, #{bEMAIL}, #{bPOST}, #{bADDRESS}, #{bBIRTH}, #{bLICENSE}, #{bTEMRS})
+	</insert>
+
+	<select id="select_all" resultType="BuyerVO">
+		select * from ${buyer}
+		order by ${bID} desc
+	</select>
+	
+	<select id="select_by_bID" resultType="BuyerVO">
+		select * from ${buyer}
+		where ${bID} = #{bID}
+	</select>
+	
+	<update id="update">
+		update ${buyer}
+		set ${bPHONE} = #{bPHONE}, ${bEMAIL} = #{bEMAIL}, ${bPOST} = #{bPOST}, ${bADDRESS} = #{bADDRESS}, ${bBIRTH} = #{bBIRTH}, ${bLICENSE} = #{bLICENSE}, ${bLEVEL} = #{bLEVEL}
+		where ${bID} = #{bID}
+	</update>
+	
+	<delete id="delete">
+		delete from ${buyer}
+		where ${bID} = #{bID}
+	</delete>
+	
+	<select id="select_login" resultType="BuyerVO">
+		select * from ${buyer}
+		where ${bID} = #{bID}
+	</select>
+	
+	<select id="total_count" resultType="Integer">
+		select count(*) total_cnt from ${buyer}
+	</select>
+	
+	<select id="paging" resultType="BuyerVO">
+		select
+		b.${bNO}, b.${bID}, b.${bPHONE}, b.${bEMAIL}, b.${bPOST}, b.${bADDRESS}, b.${bBIRTH}, b.${bLICENSE}, b.${bTEMRS}, b.${bLEVEL}, b.${bBUY}, b.${bDROP}, b.${bCDATE}
+		from (
+			select rownum rn, a.* 
+			from (
+				select * from ${buyer} order by ${bID} desc
+				)a
+			)b
+			where rn between #{start} and #{end}
+	</select>
+	
+	<select id="select_by_bNO" resultType="BuyerVO">
+		select * from ${buyer}
+		where ${bNO} like #{bNO}
+	</select>
+	
+	<select id="select_by_kw" resultType="BuyerVO">
+		select * from ${buyer} 
+		where ${bID} like #{keyword}
+		order by ${bID} desc
+	</select>
+	
+	<!-- 아이디 중복 확인  -->
+	<select id="bidCheck" resultType="int">
+		select count(*) from buyer
+			where bID = #{bID}
+	</select>
+	
+</mapper>
