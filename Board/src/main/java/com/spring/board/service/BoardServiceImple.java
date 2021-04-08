@@ -35,11 +35,25 @@ public class BoardServiceImple implements BoardService {
 		return dao.selectBoard();
 	}
 
-	// 게시판 번호로 선택
+	// 게시판 번호로 선택 / 게시글 정보 확인 
 	@Override
 	public BoardVO readBoard(int bNo) throws Exception {
 		LOGGER.info("readBoard() 호출 : bNo : " + bNo);
 		return dao.selectBoard(bNo);
+	}
+	
+	// 게시글 수정 
+	@Override
+	public int updateBoard(BoardVO vo) throws Exception {
+		LOGGER.info("updateBoard() 호출");
+		return dao.updateBoard(vo);
+	}
+
+	// 게시글 삭제 
+	@Override
+	public int deleteBoard(int bNo) throws Exception {
+		LOGGER.info("delateBoard() 호출");
+		return dao.deleteBoard(bNo);
 	}
 	
 } // end BoardServiceImple

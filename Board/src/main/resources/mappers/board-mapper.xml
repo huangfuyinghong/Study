@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.board.BoardMapper">
+
+<!-- 컬럼이름 : mybatis-config.xml의 name
+	${컬럼이름} : DB 테이블의 열
+	#{컬럼이름} : 입력받은 데이터 -->
+	
+	<!-- DB 쿼리 작성 -->
+	<!-- id : dao의 메소드와 연결하기 위해 사용 -->
+	
+	<!-- 게시물 작성 -->
+	<insert id="board_insert">
+		insert into ${board} (${title}, ${content}, ${writer})
+		values (#{title}, #{content}, #{writer})
+	</insert>
+	
+	<!-- 게시물 전체 리스트 -->
+	<select id="board_select_all" resultType="BoardVO">
+		select * from ${board}
+		order by ${bNo} desc
+	</select>
+	
+	<!-- 게시물 상세 정보 -->
+	<select id="board_select_bNo" resultType="BoardVO">
+		select * from ${board}
+		where ${bNo} = #{bNo}
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<update id="board_update">
+		update ${board}
+		set ${title} = #{title}, ${writer} = #{writer}, ${content} = #{content}
+		where ${bNo} = #{bNo}
+	</update>
+	
+	<delete id="board_delete">
+		delete from ${board}
+		where ${bNo} = #{bNo}
+	</delete>
+	
+	
+	
+	
+	<!-- resultType : select를 했을때 리턴하는 레코드 타입 선언
+	- 일반적으로 패키지 이름을 포함한 전체경로의 클래스 이름을 사용해야함
+	- mybatis-config.xml에서 typeAliases 속성을 package로 정의하여 클래스 이름만 사용 -->
+
+</mapper>

@@ -43,11 +43,25 @@ public class BoardDAOImple implements BoardDAO {
 		return sqlSession.selectList(NAMESPACE + ".board_select_all");
 	}
 
-	// 게시판 번호로 선택
+	// 게시글 정보 보기 
 	@Override
 	public BoardVO selectBoard(int bNo) throws Exception {
 		LOGGER.info("selectBoard() 호출 : bNo = " + bNo);
-		return sqlSession.selectOne(NAMESPACE + ".board_select_all", bNo);
+		return sqlSession.selectOne(NAMESPACE + ".board_select_bNo", bNo);
+	}
+
+	// 게시글 수정  
+	@Override
+	public int updateBoard(BoardVO vo) throws Exception {
+		LOGGER.info("updateBoard() 호출 : vo = " + vo);
+		return sqlSession.update(NAMESPACE + ".board_update", vo);
+	}
+
+	// 게시물 삭제 
+	@Override
+	public int deleteBoard(int bNo) throws Exception {
+		LOGGER.info("deleteBoard() 호출");
+		return sqlSession.delete(NAMESPACE + ".board_delete", bNo);
 	}
 
 	
