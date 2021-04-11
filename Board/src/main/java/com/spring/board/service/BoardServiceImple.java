@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.board.domain.BoardVO;
+import com.spring.board.pageutil.PageCriteria;
 import com.spring.board.persistence.BoardDAO;
 
 @Service 
@@ -55,5 +56,21 @@ public class BoardServiceImple implements BoardService {
 		LOGGER.info("delateBoard() 호출");
 		return dao.deleteBoard(bNo);
 	}
+
+	// 게시글 수량 
+	@Override
+	public int getTotalNumsOfRecords() throws Exception {
+		LOGGER.info("getTotalNumsOfRecords() 호출");
+		return dao.getTotalNumsOfRecords();
+	}
+
+	// 게시판 페이지 표시
+	@Override
+	public List<BoardVO> readBoard(PageCriteria criteria) {
+		LOGGER.info("readeBoard() 호출 : page = " + criteria.getPage());
+		return dao.select(criteria);
+	}
+
+
 	
 } // end BoardServiceImple

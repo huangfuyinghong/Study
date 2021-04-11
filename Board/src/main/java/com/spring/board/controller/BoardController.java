@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.board.domain.BoardVO;
+import com.spring.board.pageutil.PageCriteria;
+import com.spring.board.pageutil.PageMaker;
 import com.spring.board.service.BoardService;
 
 
@@ -28,13 +30,31 @@ public class BoardController {
 	private BoardService boardService;
 
 	
-	// 게시판 전체 리스트 
+	// 게시판 전체 리스트  / 페이징 추가   
 	@GetMapping("board/list")
-	public void list(Model model) throws Exception {
+	public void list(Model model, Integer page, Integer perPage) throws Exception {
 		LOGGER.info("board list 호출");
+		LOGGER.info("page = " + page + ", perPage = " + perPage); 
 		
-		List<BoardVO> list = boardService.readBoard();
+		// paging 처리 
+		PageCriteria criteria = new PageCriteria();
+		if (page != null) {
+			criteria.setPage(page);
+		}
+		if (perPage != null) {
+			criteria.setNumsPerPage(perPage);
+		}
+		
+		// 전체 리스트에서 현재 페이지에 표시 될 게시판  
+		List<BoardVO> list = boardService.readBoard(criteria);
 		model.addAttribute("boardList", list);
+		
+		PageMaker maker = new PageMaker();
+		maker.setCriteria(criteria);
+		maker.setTotalCount(boardService.getTotalNumsOfRecords());
+		maker.setPageData();
+		model.addAttribute("pageMaker", maker);
+		
 		
 	} // end list 
 	
@@ -114,7 +134,9 @@ public class BoardController {
 		}
 	} // end getDelete
 
-
+	// ---------------------------------------------------------
+	
+	
 
 
 } // end BoardController 

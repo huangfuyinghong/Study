@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.board.domain.BoardVO;
+import com.spring.board.pageutil.PageCriteria;
 
 @Repository // @Component
 //- 영속 계층(Persistence Layer)의 DB 관련 기능을 담당
@@ -63,6 +64,22 @@ public class BoardDAOImple implements BoardDAO {
 		LOGGER.info("deleteBoard() 호출");
 		return sqlSession.delete(NAMESPACE + ".board_delete", bNo);
 	}
+
+	// 게시글 수량  
+	@Override
+	public int getTotalNumsOfRecords() throws Exception {
+		LOGGER.info("getTotalNumsOfRecords() 호출");
+		return sqlSession.selectOne(NAMESPACE + ".total_count");
+	}
+	
+	// 게시판 페이지 표시 
+	@Override
+	public List<BoardVO> select(PageCriteria criteria) {
+		LOGGER.info("select() 호출 : page = " + criteria.getPage());
+		return sqlSession.selectList(NAMESPACE + ".paging", criteria);
+	}
+
+
 
 	
 	
