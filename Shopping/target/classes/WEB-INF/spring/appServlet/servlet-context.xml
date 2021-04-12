@@ -56,7 +56,6 @@
 		class="com.web.shopping.interceptor.AdminInterceptor">
 	</beans:bean>
 
-	
 	<!-- Interceptor가 가로챌 URL 매핑 설정 -->
 	<interceptors>
 		<interceptor>
@@ -67,7 +66,33 @@
 			
 	        <beans:ref bean="adminInteceptor" />
 		</interceptor>
-		</interceptors> 
+	</interceptors> 
+		
+	<beans:bean id="buyerInterceptor"
+		class="com.web.shopping.interceptor.BuyerInterceptor">
+	</beans:bean>	
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/buyer/**" />
+			<exclude-mapping path="/login "/>
+			
+			<beans:ref bean="buyerInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+		<beans:bean id="sellerInterceptor"
+		class="com.web.shopping.interceptor.SellerInterceptor">
+	</beans:bean>	
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/seller/**" />
+			<exclude-mapping path="/login "/>
+			
+			<beans:ref bean="sellerInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
 

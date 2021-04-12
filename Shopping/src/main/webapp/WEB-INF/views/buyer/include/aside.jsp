@@ -26,11 +26,12 @@ li > ul.sub-menu2 li { width:180px; }
   <ul class='main-menu'>
     <li><a href="product_list">상품(Product)</a>
       <ul class="sub-menu">
-        <li><a href="/shopping/product_list?c=100&l=1">패션의류</a>
+        <li><a href="/shopping/product_list?c=100&l=1">잡화</a>
           <ul class="sub-menu2">
-            <li><a href="/shopping/product_list?c=101&l=2">여성의류</a></li>
-            <li><a href="/shopping/product_list?c=102&l=2">남성의류</a></li>
+            <li><a href="/shopping/product_list?c=101&l=2">휴대폰케이스</a></li>
+            <li><a href="/shopping/product_list?c=102&l=2">패션잡화</a></li>
           </ul></li>
+          <!--  
         <li><a href="/shopping/product_list?c=200&l=1">패션잡화</a>
           <ul class="sub-menu2">
             <li><a href="/shopping/product_list?c=201&l=2">여성신발</a></li>
@@ -75,6 +76,7 @@ li > ul.sub-menu2 li { width:180px; }
             <li><a href="/shopping/product_list?c=704&l=2">수납/정리용품</a></li>
             <li><a href="/shopping/product_list?c=705&l=2">생활용품</a></li>
           </ul></li>
+          -->
       </ul></li>
 
     <li><a href="">신상품(New In))</a></li>

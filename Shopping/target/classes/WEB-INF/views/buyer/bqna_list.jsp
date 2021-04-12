@@ -116,7 +116,7 @@ footer#footer ul li {
 
       <div id="container_box" class="container">
 
-        <form action="bqna_list" method="get" enctype="multipart/form-data">
+        <form action="bqna_list" method="get"  enctype="multipart/form-data">
           <table class="table table-bordered table-hover" style="text-align: center; border: 1px solid #dddddd">
             <thead>
               <tr>

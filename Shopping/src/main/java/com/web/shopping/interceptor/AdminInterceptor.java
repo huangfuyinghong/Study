@@ -42,12 +42,6 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 
 //	private static final Logger LOGGER = 
 //			LoggerFactory.getLogger(AdminInterceptor.class);

@@ -137,14 +137,14 @@ public class BuyerController {
 // --------------------------------------------------------------------------
 
 		// buyer 회원 가입
-		@GetMapping("/buyer/register")
+		@GetMapping("buyer_register")
 		public void registerGet() {
 			LOGGER.info("buyer registerGET() 호출");
 			LOGGER.info("uploadGet() 호출 : " + uploadPath);
 			LOGGER.info("uploadAjaxGET() 호출");
 		} // end registerGet
 
-		@PostMapping("/buyer/register")
+		@PostMapping("buyer_register")
 		public String registerPOST(BuyerVO vo, MultipartFile[] files, Model model, RedirectAttributes reAttr) { // RedirectAttributes
 																												// : 재경로 위치에
 																												// // 객체
@@ -167,6 +167,10 @@ public class BuyerController {
 				vo.setbLICENSE(saveName);
 
 			}
+			
+			// 회원가입 시 비밀번호 암호화 코드
+			String bPW = passwordEncoder.encode(vo.getbPW());
+			vo.setbPW(bPW);
 
 			int result = buyerService.create(vo);
 			System.out.println();

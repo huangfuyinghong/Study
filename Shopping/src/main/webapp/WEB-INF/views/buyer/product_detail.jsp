@@ -151,107 +151,115 @@ div.product div.info p.addToCart {
   text-align: right;
 }
 
-div.product div.info img {
-  float: center;
+div.product div.info {
+  width:50%;
+  height:500px;
+  display:inline-table;
+}
+
+div.detail img {
+  width:60%;
+  float:center;
+  position: relative;
 }
 </style>
 </head>
 <body>
-  <div id="root">
-    <header id="header">
-      <div id="header_box">
-        <%@ include file="include/header.jsp"%>
-      </div>
-    </header>
+	<div id="root">
+		<header id="header">
+			<div id="header_box">
+				<%@ include file="include/header.jsp"%>
+			</div>
+		</header>
 
-    <nav id="nav">
-      <div id="nav_box">
-        <%@ include file="include/nav.jsp"%>
-      </div>
-    </nav>
+		<nav id="nav">
+			<div id="nav_box">
+				<%@ include file="include/nav.jsp"%>
+			</div>
+		</nav>
 
-    <section id="container">
-      <aside>
-        <%@ include file="include/aside.jsp"%>
-      </aside>
-      <div id="container_box" class="container">
-        <form action="cartAdd" method="post" enctype="multipart/form-data">
-          <input type="hidden"  name="pID" value="${productVO.pID }" />
+		<section id="container">
+			<aside>
+				<%@ include file="include/aside.jsp"%>
+			</aside>
+			<div id="container_box" class="container">
+				<form action="cartAdd" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="pID" value="${productVO.pID }" />
 
-          <div class="product">
-            <div class="imgBox">
-              <img src="display?fileName=/${productVO.pIMG1 }" alt="메인 사진" />
-            </div>
+					<div class="product">
+						<div class="imgBox">
+							<img src="display?fileName=/${productVO.pIMG1 }" alt="메인 사진" />
+						</div>
 
-            <div class="info">
-              <p class="pNAME">
-                <span>상품명</span>${productVO.pNAME }</p>
-                <input type="hidden" name="bID" value="${buyerVO.bID }">
-              <P class="pPRICE">
-                <span>판매가격</span>
-                <fmt:formatNumber pattern="###,###,###" value="${productVO.pPRICE }" />
-                원
-              </P>
-              <P class="pDISCOUNT">
-                <span>판매가격</span>
-                <fmt:formatNumber pattern="###,###,###" value="${productVO.pDISCOUNT }" />
-                원
-              </P>
-              <P class="pSTOCK">
-                <span>재고 수량</span>
-                <fmt:formatNumber pattern="###,###,###" value="${productVO.pSTOCK }" />
-                EA
-              </P>
-              <P class="cQTY">
-                <span>구입수량</span>
-                <input type="number" id="cQTY" name="cQTY"  value="1" min="1" max="${productVO.pSTOCK }"/>
-              </P>
+						<div class="info">
+							<p class="pNAME">
+								<span>상품명</span>${productVO.pNAME }</p>
+							<input type="hidden" name="bID" value="${buyerVO.bID }">
+							<P class="pPRICE">
+								<span>판매가격</span>
+								<fmt:formatNumber pattern="###,###,###" value="${productVO.pPRICE }" />
+								원
+							</P>
+							<P class="pDISCOUNT">
+								<span>판매가격</span>
+								<fmt:formatNumber pattern="###,###,###" value="${productVO.pDISCOUNT }" />
+								원
+							</P>
+							<P class="pSTOCK">
+								<span>재고 수량</span>
+								<fmt:formatNumber pattern="###,###,###" value="${productVO.pSTOCK }" />
+								EA
+							</P>
+							<P class="cQTY">
+								<span>구입수량</span> <input type="number" id="cQTY" name="cQTY" value="1" min="1" max="${productVO.pSTOCK }" />
+							</P>
 
-              <input type="submit" value="카트담기">
+							<input type="submit" value="카트담기">
+						</div>
+					</div>
+					<br>
+					<br>
+					<br>
+					<div class="detail">
+						<img src="display?fileName=/${productVO.pDETAIL }" alt="상품상세" />
+					</div>
 
-              <img src="display?fileName=/${productVO.pDETAIL }" alt="상품상세" />
+				</form>
+			</div>
+		</section>
 
-            </div>
-          </div>
-
-        </form>
-      </div>
-    </section>
-
-    <footer id="footer">
-      <div id="footer_box">
-        <%@ include file="include/footer.jsp"%>
-      </div>
-    </footer>
-  </div>
+		<footer id="footer">
+			<div id="footer_box">
+				<%@ include file="include/footer.jsp"%>
+			</div>
+		</footer>
+	</div>
 
 </body>
 
 <script>
-
-/* $(".addCart_btn").click(function(){
-  var pID = $("#pID").val();
-  var cQTY = $("#cQTY").val();
-     
-  var data = {
-    pID : pID,
-    cQTY : cQTY
-    };
+  /* $(".addCart_btn").click(function(){
+   var pID = $("#pID").val();
+   var cQTY = $("#cQTY").val();
   
-  $.ajax({
+   var data = {
+   pID : pID,
+   cQTY : cQTY
+   };
+  
+   $.ajax({
    url : "cartAdd",
    type : "post",
    data : data,
    success : function(result){
-    alert("카트 담기 성공");
-    $(".cQTY").val("1");
+   alert("카트 담기 성공");
+   $(".cQTY").val("1");
    },
    error : function(){
-    alert("카트 담기 실패");
+   alert("카트 담기 실패");
    }
-  });
- }); */
-
- </script>
+   });
+   }); */
+</script>
 
 </html>

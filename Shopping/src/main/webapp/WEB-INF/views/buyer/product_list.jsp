@@ -165,7 +165,7 @@ div.page {
 
         <div>
           <form id="pagingForm" style="display: none;">
-            <input type="text" name="page">
+            <input type="hidden" name="page">
           </form>
         </div>
 

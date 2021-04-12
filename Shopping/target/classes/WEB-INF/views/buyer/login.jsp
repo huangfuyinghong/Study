@@ -108,7 +108,7 @@ footer#footer ul li {
                 <td style="width: 120px;"><input
                   class="btn btn-primary" type="submit" value="로그인" />
                   <input class="btn btn-primary" type="button"
-                  value="회원가입" onclick="location.href='register'" /></td>
+                  value="회원가입" onclick="location.href='/shopping/buyer_register'" /></td>
               </tr>
               <tr>
                 <td style="width: 120px;"><c:if

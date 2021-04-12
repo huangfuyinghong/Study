@@ -75,7 +75,7 @@ public class PageMaker {
 			hasNext = true;
 		}
 		// Math.ceil (올림)
-		// Math.floor (버림
+		// Math.floor (버림)
 		
 	}
 	

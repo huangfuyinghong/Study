@@ -30,8 +30,8 @@ public class SellerServiceImple implements SellerService{
 	public int create(SellerVO vo) {
 		LOGGER.info("create() 호출");
 		// 회원가입 시 비밀번호 암호화 코드  
-		String sPW = passwordEncoder.encode(vo.getsPW());
-		vo.setsPW(sPW);
+//		String sPW = passwordEncoder.encode(vo.getsPW());
+//		vo.setsPW(sPW);
 		
 		return dao.insert(vo);
 	}

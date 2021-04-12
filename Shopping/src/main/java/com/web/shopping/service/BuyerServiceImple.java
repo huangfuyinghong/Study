@@ -29,8 +29,8 @@ public class BuyerServiceImple implements BuyerService {
 	public int create(BuyerVO vo) {
 		LOGGER.info("create() 호출");
 		// 회원가입 시 비밀번호 암호화 코드
-		String bPW = passwordEncoder.encode(vo.getbPW());
-		vo.setbPW(bPW);
+//		String bPW = passwordEncoder.encode(vo.getbPW());
+//		vo.setbPW(bPW);
 		return dao.insert(vo);
 	}
 	

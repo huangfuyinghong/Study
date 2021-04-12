@@ -90,6 +90,7 @@ public class SellerController {
 
 		session = req.getSession();
 		session.removeAttribute("seller");
+		
 
 		return "redirect:/seller/login";
 	} // end logout
@@ -97,7 +98,7 @@ public class SellerController {
 // ---------------------------------------------------------------------------------
 
 	// 회원가입 get
-	@GetMapping("seller/register")
+	@GetMapping("seller_register")
 	public void registerGet() {
 		LOGGER.info("seller registerGet() 호출");
 		LOGGER.info("uploadGet() 호출 : " + uploadPath);
@@ -105,7 +106,7 @@ public class SellerController {
 	}
 
 	// 회원가입 post
-	@PostMapping("seller/register")
+	@PostMapping("seller_register")
 	public String registerPost(SellerVO vo, MultipartFile[] files, Model model) {
 		LOGGER.info("seller registerPost() 호출");
 
@@ -140,7 +141,10 @@ public class SellerController {
 				vo.setsBANK(saveName);
 			}
 		}
-
+		// 회원가입 시 비밀번호 암호화 코드 
+		String bPW = passwordEncoder.encode(vo.getsPW());
+		vo.setsPW(bPW);
+		 
 		int result = sellerService.create(vo);
 //		int count = sellerService.sidCheck(vo.getsID());
 
